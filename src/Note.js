@@ -13,7 +13,7 @@ function Note({id, text}) {
 
   return (              
 		<div className="note-container" id={id}>
-			<div className="text-container" data-text={id}>
+			<div className="text-container">
 				<p className="note-text">{text}</p>
 				{
 					hidden ? 
@@ -23,7 +23,6 @@ function Note({id, text}) {
 					onKeyUp={(e) => { setNewText(e.target.value) }} 
 					className="edit-text" 
 					name="editText" 
-					data-edittext={id} 
 					cols="30" rows="10" 
 					defaultValue={newText}>
 				</textarea>
@@ -33,7 +32,7 @@ function Note({id, text}) {
 				<button onClick={() => { dispatch(removeNote(id)) }}>Remove</button>
 				<button onClick={() => { 
 					if (hidden === false) {
-						setHidden(!hidden);	// hide the textarea after user clicks save
+						setHidden(!hidden); // hide the textarea after user clicks save
 					}
 					if (newText.trim().length === 0) {
 						console.log("Can't save an empty note. Use Remove instead.");
