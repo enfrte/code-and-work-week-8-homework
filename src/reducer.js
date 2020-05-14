@@ -27,7 +27,7 @@ const simpleReducer = (state = [], action) => {
 
 //action creators
 
-const addNote = (noteText) => {
+export const addNote = (noteText) => {
 	return { type: 'ADD', data: noteText };
 };
 
