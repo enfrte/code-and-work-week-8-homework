@@ -1,9 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editNote, addNote, removeNote, saveEdit } from "./reducer"
 
 function Note({id, text}) {
+	const dispatch = useDispatch();
 	const [hidden, setHidden] = useState(true);
+	const [newText, setNewText] = useState(text);
 	
 	const handleSwitchTextarea = () => {
     setHidden(!hidden);
@@ -18,12 +22,19 @@ function Note({id, text}) {
 					hidden ? 
 						null 
 					:
-						<textarea style={{}} className="edit-text" name="editText" data-edittext={id} cols="30" rows="10" defaultValue={text}></textarea>
+				<textarea 
+					onKeyUp={(e) => { setNewText(e.target.value) }} 
+					className="edit-text" 
+					name="editText" 
+					data-edittext={id} 
+					cols="30" rows="10" 
+					defaultValue={newText}>
+				</textarea>
 				}
 			</div>
 			<div>
-				{/*<button onClick={() => { store.dispatch(removeNote(element.id)) }}>Remove</button>
-				<button onClick={() => { store.dispatch(saveEdit(element.id)) }}>Save edit</button>*/}
+				<button onClick={() => { dispatch(removeNote(id)) }}>Remove</button>
+				<button onClick={() => { dispatch(saveEdit(id, newText)) }}>Save edit</button>
 				<button onClick={handleSwitchTextarea}>{hidden ? "Edit" : "Cancel"}</button>
 			</div>
 		</div>
