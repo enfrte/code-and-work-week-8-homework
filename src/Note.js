@@ -17,7 +17,6 @@ function Note({id, text}) {
 		<div className="note-container" id={id}>
 			<div className="text-container" data-text={id}>
 				<p className="note-text">{text}</p>
-				<h4>Edit area</h4>
 				{
 					hidden ? 
 						null 
@@ -34,7 +33,16 @@ function Note({id, text}) {
 			</div>
 			<div>
 				<button onClick={() => { dispatch(removeNote(id)) }}>Remove</button>
-				<button onClick={() => { dispatch(saveEdit(id, newText)) }}>Save edit</button>
+				<button onClick={() => { 
+					if (hidden === false) {
+						setHidden(!hidden);						
+					}
+					if (newText.trim().length === 0) {
+						console.log("Can't save an empty note. Use Remove instead.");
+						return;
+					}
+					dispatch(saveEdit(id, newText));
+				}}>Save edit</button>
 				<button onClick={handleSwitchTextarea}>{hidden ? "Edit" : "Cancel"}</button>
 			</div>
 		</div>

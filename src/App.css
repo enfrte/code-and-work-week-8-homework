@@ -54,3 +54,8 @@ button {
 .edit-text {
   width: 395px;
 }
+
+.single-message {
+  background: whitesmoke;
+  padding: 10px;
+}

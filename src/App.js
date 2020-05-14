@@ -43,7 +43,7 @@ function App() {
             }
           </div>
         : 
-          <p>No saved notes.</p>
+          <p className="single-message">No saved notes.</p>
       }
 
     </div>
