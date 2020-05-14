@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { editNote, addNote, removeNote, saveEdit } from "./reducer"
-import { createStore } from 'redux';
+import { addNote } from "./reducer"
 import { useDispatch, useSelector } from 'react-redux'
 import Note from "./Note";
 import './App.css';
@@ -10,7 +8,7 @@ function App() {
 
   const dispatch = useDispatch();
   const notes = useSelector(state => state);
-  console.log("notes", notes);
+  //console.log("notes", notes);
   
   const submitNote = (e) => {
     e.preventDefault();

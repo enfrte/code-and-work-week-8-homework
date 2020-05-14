@@ -10,7 +10,7 @@ import './index.css';
 const simpleStore = createStore(simpleReducer);
 
 simpleStore.subscribe(() => {
-  console.log(simpleStore.getState());
+  //console.log(simpleStore.getState());
 })
 
 

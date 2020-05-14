@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from 'react';
-import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
-import { editNote, addNote, removeNote, saveEdit } from "./reducer"
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeNote, saveEdit } from "./reducer"
 
 function Note({id, text}) {
 	const dispatch = useDispatch();
@@ -35,7 +33,7 @@ function Note({id, text}) {
 				<button onClick={() => { dispatch(removeNote(id)) }}>Remove</button>
 				<button onClick={() => { 
 					if (hidden === false) {
-						setHidden(!hidden);						
+						setHidden(!hidden);	// hide the textarea after user clicks save
 					}
 					if (newText.trim().length === 0) {
 						console.log("Can't save an empty note. Use Remove instead.");

@@ -7,18 +7,17 @@ const simpleReducer = (state = [], action) => {
         return obj.id !== action.data;
       });
     case 'SAVE_EDIT':
-			//const newText = document.querySelector(`[data-edittext="${action.data}"]`).value;
 			const newText = action.data.text;
-      const element = state.find(n => n.id === action.data.id);
-      const newElement = {
-        ...element,
+      const obj = state.find(n => n.id === action.data.id);
+      const newObj = {
+        ...obj,
         text: newText
       }
-      return state.map((element) => {
-        if (element.id === action.data.id) {
-          return newElement;
+      return state.map((obj) => {
+        if (obj.id === action.data.id) {
+          return newObj;
         } else {
-          return element;
+          return obj;
         }
       })
     default:
@@ -26,21 +25,15 @@ const simpleReducer = (state = [], action) => {
   }
 };
 
-//action creators
+// Action creators
 
 export const addNote = (noteText) => {
 	return { type: 'ADD', data: noteText };
 };
 
 export const removeNote = (id) => {
-	console.log(id);
-	// you can also remove the element from the dom with the id
+	//console.log(id);
 	return { type: 'REMOVE', data: id };
-};
-
-export const editNote = (id) => {
-	//document.querySelector(`[data-edittext="${id}"]`).style.display = 'visible';
-	//console.log(newText);
 };
 
 export const saveEdit = (id, text) => {
