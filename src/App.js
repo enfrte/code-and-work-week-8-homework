@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import Note from "./Note";
 import './App.css';
 
 const simpleReducer = (state = [], action) => {
@@ -81,19 +82,9 @@ function App() {
         store.getState().length > 0 ? 
           <div className="notes-container">
             {
-              store.getState().map(element => {
+              store.getState().map(obj => {
                 return (
-                  <div className="note-container" key={element.id} id={element.id}>
-                    <div className="text-container" data-text={element.id}>
-                      <p className="note-text">{element.text}</p>
-                      <h4>Edit area</h4>
-                      <textarea style={{}} className="edit-text" name="editText" data-edittext={element.id} cols="30" rows="10" defaultValue={element.text}></textarea>
-                    </div>
-                    <div>
-                      <button onClick={() => { store.dispatch(removeNote(element.id)) }}>Remove</button>
-                      <button onClick={() => { store.dispatch(saveEdit(element.id)) }}>Save edit</button>
-                    </div>
-                  </div>
+                  <Note key={obj.id} id={obj.id} text={obj.text} />
                 );
               })
             }
